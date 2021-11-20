@@ -43,10 +43,10 @@ ip route show (**sample output information shown**)
 	default via 192.168.0.1 dev eth0
 	192.168.0.0/24 dev eth0 scope link  src 192.168.0.2
 
-9. create a script called eth0on incorporating your output information
+9. create a script called "eth0up" incorporating your output information
 
 mkdir /mnt/sda7/var/tmp
-cat > /mnt/sda7/var/tmp/eth0on << 'done'
+cat > /mnt/sda7/var/tmp/eth0up << 'done'
 #!/bin/sh
 ip addr add 192.168.0.2/24 dev eth0
 ip link set eth0 up
@@ -58,10 +58,10 @@ chmod 0755 /mnt/sda7/var/tmp/eth0on
 
 11. plug in an ethernet cable (if not already present)
 
-12. execute eth0on
+12. execute eth0up
 
 cd /var/tmp
-./eth0on
+./eth0up
 
 13. ping something (ex. ping 8.8.8.8 or ping yahoo.com)
 
