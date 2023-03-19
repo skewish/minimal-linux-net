@@ -1,0 +1,67 @@
+minimal-linux-net
+
+1. parent system pre-build setup (fyi)
+
+64-bit debian linux on /dev/sda (newest release)
+previously built minimal-linux-new (ex. on /dev/sda7 at /mnt/sda7)
+internet connection
+
+2. within the parent system open a terminal and become su
+
+3. mount the partition where minimal-linux-new exists
+
+mount -t ext4 /dev/sda7 /mnt/sda7
+
+4. add /mnt/sda7/etc/hostname
+
+cat > /mnt/sda7/etc/hostname << 'done'
+localhost
+done
+
+5. add /mnt/sda7/etc/hosts
+
+cat > /mnt/sda7/etc/hosts << 'done'
+127.0.0.1 localhost
+done
+
+6. add /mnt/sda7/etc/nsswitch.conf
+
+cat > /mnt/sda7/etc/nsswitch.conf << 'done'
+hosts: files dns
+done
+
+7. add /mnt/sda7/etc/resolv.conf
+
+cat > /mnt/sda7/etc/resolv.conf << 'done'
+nameserver 1.1.1.1 1.0.0.1
+done
+
+8. obtain default route information for your system
+
+ip route show (sample output information shown)
+
+	default via 192.168.1.1 dev eth0
+	192.168.1.0/24 dev eth0 scope link  src 192.168.1.2
+
+9. create a script called "eth0up" incorporating your output information
+
+mkdir /mnt/sda7/var/tmp
+cat > /mnt/sda7/var/tmp/eth0up << 'done'
+#!/bin/sh
+ip addr add 192.168.1.2/24 dev eth0
+ip link set eth0 up
+ip route add default via 192.168.1.1
+done
+chmod 0755 /mnt/sda7/var/tmp/eth0up
+
+10. reboot (at grub menu select minimal-linux-new)
+
+11. plug in an ethernet cable (if not already present)
+
+12. execute eth0up
+
+cd /var/tmp
+./eth0up
+
+13. ping something (ex. ping 8.8.8.8 or ping yahoo.com)
+
