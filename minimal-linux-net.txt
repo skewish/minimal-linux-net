@@ -1,6 +1,6 @@
 minimal-linux-net
 
-1. parent system prebuild setup (fyi)
+1. parent system pre-build setup (fyi)
 
 64-bit debian linux on /dev/sda1 (newest release)
 previously built minimal-linux-new (ex. on /dev/sda7)
