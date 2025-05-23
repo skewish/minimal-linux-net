@@ -59,7 +59,7 @@ done
 
 11. plug in an ethernet cable (if not already present)
 
-12. execute eth0up
+12. within minimal-linux-new execute eth0up
 
 ~# cd /var
 ~# ./eth0up
