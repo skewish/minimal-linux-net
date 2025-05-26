@@ -1,9 +1,9 @@
 minimal-linux-net
 
-1. parent system pre-build setup (fyi)
+1. my parent system pre-build setup (fyi)
 
 64-bit debian linux on /dev/sda1 (newest release)
-previously built minimal-linux-new (ex. on /dev/sda7)
+previously built minimal-linux-new on /dev/sda7
 internet connection
 
 2. within the parent system (debian) open a terminal and become superuser
