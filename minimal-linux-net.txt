@@ -47,7 +47,7 @@ done
 
 9. create a script called "eth0up" incorporating your output information
 
-~# cat > /mnt/sda7/var/eth0up << 'done'
+~# cat > /mnt/sda7/sbin/eth0up << 'done'
 #!/bin/sh
 ip addr add 192.168.1.2/24 dev eth0
 ip link set eth0 up
@@ -61,7 +61,7 @@ done
 
 12. within minimal-linux-new execute eth0up
 
-~# cd /var
+~# cd /sbin
 ~# ./eth0up
 
 13. ping something (ex. ping 8.8.8.8 or ping yahoo.com)
