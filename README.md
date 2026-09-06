@@ -1,2 +1,1 @@
-# minimal-linux-net
-minimal linux net
+minimal-linux-net is a simple recipe to configure a minimal network for the minimal-linux-new system.  its intended purpose is to better understand the basics of ethernet setup and use.  once complete, you should be able to ping websites by ip address or domain name, and use telnet.  it's very easy and fun, just follow the steps.
