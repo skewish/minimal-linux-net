@@ -98,5 +98,6 @@ done
 17. test the network connection
 
 ~# /sbin/eth0up (connects the network)
-~# ping 8.8.8.8 or ping yahoo.com (use Ctrl-c to stop)
+~# ping 8.8.8.8 or ping yahoo.com (use Ctrl-c to stop), or
+~# telnet horizons.jpl.nasa.gov 6775
 ~# /sbin/eth0dn (disconnects the network)
