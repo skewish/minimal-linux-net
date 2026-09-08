@@ -71,33 +71,39 @@ done
 
 ~# ip route show (sample output information shown)
 
-	default via 192.168.0.1 dev eth0 proto dhcp src 192.168.0.254 metric 100
-	192.168.0.0/24 dev eth0 proto kernel scope link src 192.168.0.254 metric 100
+	default via 192.168.0.1 dev eno1 proto dhcp src 192.168.0.254 metric 100
+	192.168.0.0/24 dev eno1 proto kernel scope link src 192.168.0.254 metric 100
 
-13. create a script called "eth0up" (use your output information)
+13. create a script called "net0up" (use your output information)
 
-~# cat > /mnt/sda8/sbin/eth0up << 'done'
+~# cat > /mnt/sda8/sbin/net0up << 'done'
 #!/bin/sh
-ifconfig eth0 192.168.0.254 netmask 255.255.255.0 up
+ifconfig eno1 192.168.0.254 netmask 255.255.255.0 up
 route add default gw 192.168.0.1
 done
-~# chmod 0755 /mnt/sda8/sbin/eth0up
+~# chmod 0755 /mnt/sda8/sbin/net0up
 
-14. create a script called "eth0dn"
+14. create a script called "net0dn"
 
-~# cat > /mnt/sda8/sbin/eth0dn << 'done'
+~# cat > /mnt/sda8/sbin/net0dn << 'done'
 #!/bin/sh
-ifconfig eth0 down
+ifconfig eno1 down
 done
-~# chmod 0755 /mnt/sda8/sbin/eth0dn
+~# chmod 0755 /mnt/sda8/sbin/net0dn
 
 15. reboot (at grub menu select minimal-linux-new)
 
 16. plug in an ethernet cable (if not already present)
 
-17. test the network connection
+17. check if eno1 is renamed & update net0up and net0dn as needed
 
-~# /sbin/eth0up (connects the network)
+~# ifconfig -l
+
+	eth0 lo sit0 (this shows eno1 is now named eth0, use ed to update)
+
+18. test the network connection
+
+~# /sbin/net0up (connects the network)
 ~# ping 8.8.8.8 or ping yahoo.com (use Ctrl-c to stop), or
 ~# telnet horizons.jpl.nasa.gov 6775
-~# /sbin/eth0dn (disconnects the network)
+~# /sbin/net0dn (disconnects the network)
