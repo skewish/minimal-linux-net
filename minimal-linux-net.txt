@@ -15,22 +15,22 @@ minimal-linux-net
 
 ~# mount -t ext4 /dev/sda8 /mnt/sda8
 
-4. download & unpack the following source code into /mnt/sda8/tmp
+4. download and unpack the following source code into /mnt/sda8/tmp
 
 https://ftp.gnu.org/software/inetutils/ (newest release) --> /mnt/sda8/tmp
 https://sourceforge.net/projects/net-tools/ (newest release) --> /mnt/sda8/tmp
 
-unpack files, remove archives & chown to root
+unpack files, remove archives and chown to root
 ~# chown -R 0:0 /mnt/sda8/tmp
 
-5. compile & install inetutils
+5. compile and install inetutils
 
 cd /mnt/sda8/tmp/inetutils*/
 ./configure --prefix=/usr
 make
 make DESTDIR=/mnt/sda8 install
 
-6. compile & install net-tools
+6. compile and install net-tools
 
 cd /mnt/sda8/tmp/net-tools*/
 make config
@@ -95,11 +95,11 @@ done
 
 16. plug in an ethernet cable (if not already present)
 
-17. check if eno1 is renamed & update net0up and net0dn as needed
+17. check if eno1 is renamed and update net0up & net0dn as needed
 
 ~# ifconfig -l
 
-	eth0 lo sit0 (this shows eno1 is now named eth0, use ed to update)
+	eth0 lo sit0 (eno1 is now named eth0, use ed to update net0up & net0dn)
 
 18. test the network connection
 
