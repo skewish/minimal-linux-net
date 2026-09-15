@@ -23,17 +23,17 @@ https://sourceforge.net/projects/net-tools/ (newest release) --> /mnt/sda8/tmp
 unpack files, remove archives and chown to root
 ~# chown -R 0:0 /mnt/sda8/tmp
 
-5. compile and install inetutils
-
-cd /mnt/sda8/tmp/inetutils*/
-./configure --prefix=/usr
-make
-make DESTDIR=/mnt/sda8 install
-
-6. compile and install net-tools
+5. compile and install net-tools
 
 cd /mnt/sda8/tmp/net-tools*/
 make config
+make
+make DESTDIR=/mnt/sda8 install
+
+6. compile and install inetutils
+
+cd /mnt/sda8/tmp/inetutils*/
+./configure --prefix=/usr
 make
 make DESTDIR=/mnt/sda8 install
 
