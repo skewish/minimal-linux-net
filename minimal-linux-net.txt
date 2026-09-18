@@ -26,7 +26,7 @@ unpack files, remove archives and chown to root
 5. compile and install net-tools
 
 cd /mnt/sda8/tmp/net-tools*/
-make config
+make config (the default answers should be safe)
 make
 make DESTDIR=/mnt/sda8 install
 
@@ -99,7 +99,7 @@ done
 
 ~# ifconfig -l
 
-	eth0 lo sit0 (eno1 is now named eth0, use ed to update net0up & net0dn)
+	eth0 lo sit0 (eno1 is renamed to eth0, use ed to update net0up & net0dn)
 
 18. test the network connection
 
