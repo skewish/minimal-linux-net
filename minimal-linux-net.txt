@@ -76,20 +76,20 @@ done
 
 13. create a script called "net0up" (use your output information)
 
-~# cat > /mnt/sda8/sbin/net0up << 'done'
+~# cat > /mnt/sda8/usr/sbin/net0up << 'done'
 #!/bin/sh
 ifconfig eno1 192.168.0.254 netmask 255.255.255.0 up
 route add default gw 192.168.0.1
 done
-~# chmod 0755 /mnt/sda8/sbin/net0up
+~# chmod 0755 /mnt/sda8/usr/sbin/net0up
 
 14. create a script called "net0dn"
 
-~# cat > /mnt/sda8/sbin/net0dn << 'done'
+~# cat > /mnt/sda8/usr/sbin/net0dn << 'done'
 #!/bin/sh
 ifconfig eno1 down
 done
-~# chmod 0755 /mnt/sda8/sbin/net0dn
+~# chmod 0755 /mnt/sda8/usr/sbin/net0dn
 
 15. reboot (at grub menu select minimal-linux-new)
 
@@ -103,7 +103,7 @@ done
 
 18. test the network connection
 
-~# /sbin/net0up (connects the network)
+~# net0up (connects the network)
 ~# ping 8.8.8.8 or ping yahoo.com (use Ctrl-c to stop), or
 ~# telnet horizons.jpl.nasa.gov 6775
-~# /sbin/net0dn (disconnects the network)
+~# net0dn (disconnects the network)
