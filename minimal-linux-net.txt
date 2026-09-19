@@ -26,7 +26,7 @@ unpack files, remove archives and chown to root
 5. compile and install net-tools
 
 cd /mnt/sda8/tmp/net-tools*/
-make config (the default answers should be safe)
+make config (the default answers should all be safe)
 make
 make DESTDIR=/mnt/sda8 install
 
