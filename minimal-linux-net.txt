@@ -95,11 +95,14 @@ done
 
 16. plug in an ethernet cable (if not already present)
 
-17. check if eno1 is renamed and update net0up & net0dn as needed
+17. within minimal-linux-new check if the ethernet interface has been renamed
 
-~# ifconfig -l
+~# ifconfig -l (sample output information shown)
 
-	eth0 lo sit0 (eno1 is renamed to eth0, use ed to update net0up & net0dn)
+	eth0 lo sit0
+
+	(this example shows the ethernet interface is now named eth0. 
+	use ed to modify net0up & net0dn to match your interface name)
 
 18. test the network connection
 
