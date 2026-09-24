@@ -28,7 +28,7 @@ unpack files, remove archives and chown to root
 cd /mnt/sda8/tmp/net-tools*/
 make config (the default answers should all be safe)
 make
-make DESTDIR=/mnt/sda8 install
+make DESTDIR=/mnt/sda8 BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
 6. compile and install inetutils
 
