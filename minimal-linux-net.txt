@@ -78,7 +78,7 @@ done
 
 ~# cat > /mnt/sda8/usr/sbin/net0up << 'done'
 #!/bin/sh
-ifconfig eno1 192.168.0.254 netmask 255.255.255.0 up
+ifconfig eth0 192.168.0.254 netmask 255.255.255.0 up
 route add default gw 192.168.0.1
 done
 ~# chmod 0755 /mnt/sda8/usr/sbin/net0up
@@ -87,7 +87,7 @@ done
 
 ~# cat > /mnt/sda8/usr/sbin/net0dn << 'done'
 #!/bin/sh
-ifconfig eno1 down
+ifconfig eth0 down
 done
 ~# chmod 0755 /mnt/sda8/usr/sbin/net0dn
 
@@ -95,16 +95,7 @@ done
 
 16. plug in an ethernet cable (if not already present)
 
-17. within minimal-linux-new check if the ethernet interface has been renamed
-
-~# ifconfig -l (sample output information shown)
-
-	eth0 lo sit0
-
-	(this example shows the ethernet interface is now named eth0. 
-	use ed to modify net0up & net0dn to match your interface name)
-
-18. test the network connection
+17. test the network connection
 
 ~# net0up (connects the network)
 ~# ping 8.8.8.8 or ping yahoo.com (use Ctrl-c to stop), or
