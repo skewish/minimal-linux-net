@@ -7,7 +7,7 @@ minimal-linux-net
 -previously built minimal-linux-new (ex. on /dev/sda8)
 -internet connection
 
-2. within the parent system (debian) open a terminal and become superuser
+2. within the parent system (debian) open a terminal & become superuser
 
 ~# su -
 
