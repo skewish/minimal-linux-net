@@ -99,7 +99,7 @@ done
 
 ~# net0up (connects the network)
 ~# ping 8.8.8.8 or ping yahoo.com (use Ctrl-c to stop), or
-~# telnet horizons.jpl.nasa.gov 6775
+~# telnet telehack.com 23
 ~# net0dn (disconnects the network)
 
 18. if no connection is established, check if eth0 has been renamed 
