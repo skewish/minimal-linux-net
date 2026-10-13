@@ -91,6 +91,10 @@ ifconfig eth0 down
 done
 ~# chmod 0755 /mnt/sda8/usr/sbin/net0dn
 
+15. update /mnt/sda8/etc/init.d/rcS
+
+~# sed -i '5a hostname localhost' /mnt/sda8/etc/init.d/rcS
+
 15. reboot (at grub menu select minimal-linux-new)
 
 16. plug in an ethernet cable (if not already present)
