@@ -8,11 +8,9 @@ minimal-linux-net
 -internet connection
 
 2. within the parent system (debian) open a terminal & become superuser
-
 ~# su -
 
 3. mount the partition where minimal-linux-new exists
-
 ~# mount -t ext4 /dev/sda8 /mnt/sda8
 
 4. download & unpack the following source code into /mnt/sda8/tmp
@@ -20,62 +18,57 @@ minimal-linux-net
 https://ftp.gnu.org/software/inetutils/ (newest release) --> /mnt/sda8/tmp
 https://sourceforge.net/projects/net-tools/ (newest release) --> /mnt/sda8/tmp
 
-unpack files, remove archives & chown to root
+5. unpack files, remove archives & chown to root
 ~# chown -R 0:0 /mnt/sda8/tmp
 
-5. compile & install net-tools
+6. compile & install net-tools
+~# cd /mnt/sda8/tmp/net-tools*/
+~# make config (the default answers should all be safe)
+~# make
+~# make DESTDIR=/mnt/sda8 BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
-cd /mnt/sda8/tmp/net-tools*/
-make config (the default answers should all be safe)
-make
-make DESTDIR=/mnt/sda8 BINDIR=/usr/bin SBINDIR=/usr/sbin install
+7. compile & install inetutils
+~# cd /mnt/sda8/tmp/inetutils*/
+~# ./configure --prefix=/usr
+~# make
+~# make DESTDIR=/mnt/sda8 install
 
-6. compile & install inetutils
+8. update /mnt/sda8/etc/init.d/rcS
+~# cd /mnt/sda8/etc/
+~# sed -i '5a hostname localhost' /mnt/sda8/etc/init.d/rcS
 
-cd /mnt/sda8/tmp/inetutils*/
-./configure --prefix=/usr
-make
-make DESTDIR=/mnt/sda8 install
-
-7. add /mnt/sda8/etc/hostname
-
+9. add /mnt/sda8/etc/hostname
 ~# cat > /mnt/sda8/etc/hostname << 'done'
 localhost
 done
 
-8. add /mnt/sda8/etc/hosts
-
+10. add /mnt/sda8/etc/hosts
 ~# cat > /mnt/sda8/etc/hosts << 'done'
 127.0.0.1 localhost
 done
 
-9. add /mnt/sda8/etc/nsswitch.conf
-
+11. add /mnt/sda8/etc/nsswitch.conf
 ~# cat > /mnt/sda8/etc/nsswitch.conf << 'done'
 hosts: files dns
 done
 
-10. add /mnt/sda8/etc/protocols
-
+12. add /mnt/sda8/etc/protocols
 ~# cat > /mnt/sda8/etc/protocols << 'done'
 icmp 1 ICMP
 done
 
-11. add /mnt/sda8/etc/resolv.conf
-
+13. add /mnt/sda8/etc/resolv.conf
 ~# cat > /mnt/sda8/etc/resolv.conf << 'done'
 nameserver 1.1.1.1 1.0.0.1
 done
 
-12. obtain default route information for your system
-
+14. obtain default route information for your system
 ~# ip route show (sample output information shown)
 
 	default via 192.168.0.1 dev eno1 proto dhcp src 192.168.0.254 metric 100
 	192.168.0.0/24 dev eno1 proto kernel scope link src 192.168.0.254 metric 100
 
-13. create a script called "net0up" (use your output information)
-
+15. create a script called "net0up" (use your output information)
 ~# cat > /mnt/sda8/usr/sbin/net0up << 'done'
 #!/bin/sh
 ifconfig eth0 192.168.0.254 netmask 255.255.255.0 up
@@ -83,29 +76,22 @@ route add default gw 192.168.0.1
 done
 ~# chmod 0755 /mnt/sda8/usr/sbin/net0up
 
-14. create a script called "net0dn"
-
+16. create a script called "net0dn"
 ~# cat > /mnt/sda8/usr/sbin/net0dn << 'done'
 #!/bin/sh
 ifconfig eth0 down
 done
 ~# chmod 0755 /mnt/sda8/usr/sbin/net0dn
 
-15. update /mnt/sda8/etc/init.d/rcS
+17. reboot (at grub menu select minimal-linux-new)
 
-~# sed -i '5a hostname localhost' /mnt/sda8/etc/init.d/rcS
+18. plug in an ethernet cable (if not already present)
 
-15. reboot (at grub menu select minimal-linux-new)
-
-16. plug in an ethernet cable (if not already present)
-
-17. test the network connection
-
+19. test the network connection
 ~# net0up (connects the network)
 ~# ping 8.8.8.8 or ping yahoo.com (use Ctrl-c to stop), or
 ~# telnet telehack.com 23
 ~# net0dn (disconnects the network)
 
-18. if no connection is established, check if eth0 has been renamed 
-
+20. if no connection is established, check if eth0 has been renamed 
 ~# ifconfig -a (use ed to modify net0up & net0dn as needed)
