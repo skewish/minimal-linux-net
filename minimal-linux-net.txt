@@ -34,8 +34,7 @@ https://sourceforge.net/projects/net-tools/ (newest release) --> /mnt/sda8/tmp
 ~# make DESTDIR=/mnt/sda8 install
 
 8. update /mnt/sda8/etc/init.d/rcS
-~# cd /mnt/sda8/etc/
-~# sed -i '5a hostname localhost' /mnt/sda8/etc/init.d/rcS
+~# cd /mnt/sda8/etc/init.d; sed -i '5a hostname localhost' rcS
 
 9. add /mnt/sda8/etc/hostname
 ~# cat > /mnt/sda8/etc/hostname << 'done'
